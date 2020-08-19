@@ -1,0 +1,40 @@
+{
+    "name": "string",
+    "category": "string",
+    "description": "string",
+    "order": 0,
+    "quantity": {
+        "period": {
+            "type": "ROLLING",
+            "cronExpression": "string"
+        },
+        "limit": 1,
+        "default": 1,
+        "step": 1,
+        "unit": {
+            "type": "PREFIX",
+            "label": "string"
+        }
+    },
+    "image": "string",
+    "type": "PURCHASE",
+    "fields": [
+        {
+            "label": "string",
+            "validation": "NRIC",
+            "validationRegex": "^[a-zA-Z0-9-_ ]+$",
+            "input": {
+                "type": "STRING",
+                "visible": true,
+                "disabled": true
+            },
+            "scanButton": {
+                "type": null,
+                "visible": true,
+                "disabled": true,
+                "text": "string"
+            }
+        }
+    ]
+}
+

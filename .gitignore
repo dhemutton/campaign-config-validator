@@ -1,0 +1,13 @@
+/node_modules/
+/coverage/
+/documents/
+npm-debug.log
+.nyc_output
+yarn-error.log
+yarn.lock
+/benchmark/
+/dist
+/.idea
+*.iml
+/tmp
+key

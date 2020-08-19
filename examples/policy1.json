@@ -1,0 +1,208 @@
+[
+    {
+        "category": "tt-token",
+        "name": "TT Token",
+        "order": 1,
+        "identifiers": [
+            {
+                "label": "Device code",
+                "uniqueColName": "device-code",
+                "validationRegex": "^[A-F0-9]{12}$",
+                "textInput": {
+                    "disabled": true,
+                    "visible": true,
+                    "type": "STRING"
+                },
+                "scanButton": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "QR"
+                }
+            },
+            {
+                "label": "Contact number",
+                "textInput": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "PHONE_NUMBER"
+                },
+                "scanButton": {
+                    "disabled": true,
+                    "visible": false
+                }
+            }
+        ],
+        "quantity": {
+            "period": -1,
+            "periodType": "CRON",
+            "periodExpression": "*/5 * * * *",
+            "limit": 1,
+            "default": 1
+        },
+        "type": "REDEEM"
+    },
+    {
+        "category": "tt-token-lost",
+        "categoryType": "APPEAL",
+        "name": "Lost/stolen token",
+        "order": 1,
+        "alert": {
+            "threshold": 2,
+            "label": "*chargeable"
+        },
+        "quantity": {
+            "period": -1,
+            "periodType": "ROLLING",
+            "periodExpression": 36500,
+            "limit": 9999,
+            "default": 1,
+            "checkoutLimit": 1
+        },
+        "identifiers": [
+            {
+                "label": "New Device Code",
+                "uniqueColName": "device-code",
+                "validationRegex": "^[A-F0-9]{12}$",
+                "textInput": {
+                    "disabled": true,
+                    "visible": true,
+                    "type": "STRING"
+                },
+                "scanButton": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "QR"
+                }
+            },
+            {
+                "label": "Contact number",
+                "textInput": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "PHONE_NUMBER"
+                },
+                "scanButton": {
+                    "disabled": true,
+                    "visible": false
+                }
+            }
+        ],
+        "type": "REDEEM"
+    },
+    {
+        "category": "tt-token-batt",
+        "categoryType": "APPEAL",
+        "name": "Dead battery",
+        "order": 2,
+        "quantity": {
+            "period": -1,
+            "periodType": "ROLLING",
+            "periodExpression": 36500,
+            "limit": 9999,
+            "default": 1,
+            "checkoutLimit": 1
+        },
+        "identifiers": [
+            {
+                "label": "Old Device Code",
+                "validationRegex": "^[A-F0-9]{12}$",
+                "textInput": {
+                    "disabled": true,
+                    "visible": true,
+                    "type": "STRING"
+                },
+                "scanButton": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "QR"
+                }
+            },
+            {
+                "label": "New Device Code",
+                "uniqueColName": "device-code",
+                "validationRegex": "^[A-F0-9]{12}$",
+                "textInput": {
+                    "disabled": true,
+                    "visible": true,
+                    "type": "STRING"
+                },
+                "scanButton": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "QR"
+                }
+            },
+            {
+                "label": "Contact number",
+                "textInput": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "PHONE_NUMBER"
+                },
+                "scanButton": {
+                    "disabled": true,
+                    "visible": false
+                }
+            }
+        ],
+        "type": "REDEEM"
+    },
+    {
+        "category": "tt-token-damaged",
+        "categoryType": "APPEAL",
+        "name": "Damaged token",
+        "order": 3,
+        "quantity": {
+            "period": -1,
+            "periodType": "ROLLING",
+            "periodExpression": 36500,
+            "limit": 9999,
+            "default": 1,
+            "checkoutLimit": 1
+        },
+        "identifiers": [
+            {
+                "label": "Old Device Code",
+                "validationRegex": "^[A-F0-9]{12}$",
+                "textInput": {
+                    "disabled": true,
+                    "visible": true,
+                    "type": "STRING"
+                },
+                "scanButton": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "QR"
+                }
+            },
+            {
+                "label": "New Device Code",
+                "uniqueColName": "device-code",
+                "validationRegex": "^[A-F0-9]{12}$",
+                "textInput": {
+                    "disabled": true,
+                    "visible": true,
+                    "type": "STRING"
+                },
+                "scanButton": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "QR"
+                }
+            },
+            {
+                "label": "Contact number",
+                "textInput": {
+                    "disabled": false,
+                    "visible": true,
+                    "type": "PHONE_NUMBER"
+                },
+                "scanButton": {
+                    "disabled": true,
+                    "visible": false
+                }
+            }
+        ],
+        "type": "REDEEM"
+    }
+]
