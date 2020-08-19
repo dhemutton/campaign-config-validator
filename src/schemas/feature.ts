@@ -1,9 +1,9 @@
 import Joi from 'joi';
 
-const flowTypeInput = ["DEFAULT", "MERCHANT"]
-const idTypeInput = ["STRING", "NUMBER"]
-const scannerTypeInput = ["CODE_39", "QR"]
-const validationTypeInput = ["NRIC", "REGEX"]
+const flowTypeInput = ["DEFAULT", "MERCHANT"];
+const idTypeInput = ["STRING", "NUMBER"];
+const scannerTypeInput = ["CODE_39", "QR"];
+const validationTypeInput = ["NRIC", "REGEX"];
 
 export const featureSchema = Joi.object({
     campaignName: Joi.string()

@@ -1,10 +1,10 @@
 import Joi from 'joi';
 
-const periodTypeInput = ["ROLLING", "FIXED"]
-const unitTypeInput = ["PREFIX", "NUMBER"]
-const policyTypeInput = ["PURCHASE", "REDEEM"]
-const validationTypeInput = ["NRIC", "REGEX"]
-const fieldTypeInput = ["CODE_39", "QR", "NULL"]
+const periodTypeInput = ["ROLLING", "FIXED"];
+const unitTypeInput = ["PREFIX", "NUMBER"];
+const policyTypeInput = ["PURCHASE", "REDEEM"];
+const validationTypeInput = ["NRIC", "REGEX"];
+const fieldTypeInput = ["CODE_39", "QR", "NULL"];
 
 export const policySchema = Joi.object({
     name: Joi.string()

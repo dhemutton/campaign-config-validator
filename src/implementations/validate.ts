@@ -1,7 +1,8 @@
 import { featureSchema } from '../schemas/feature';
 import { policySchema as policySchema1 } from '../schemas/policy1';
 import { policySchema as policySchema2 } from '../schemas/policy2';
-import fs from 'fs'
+import fs from 'fs';
+import chalk from 'chalk';
 
 export const validateFeature = (arg: any) => {
     const feature = JSON.parse(fs.readFileSync(arg, 'utf8'));
@@ -13,32 +14,31 @@ export const validatePolicy1 = (arg: any) => {
     let count = 1;
     let valid = 0;
     policies.forEach((policy: any) => {
-        console.log(`Validating ${count}/${policies.length}`)
+        console.log(`Validating ${count}/${policies.length}`);
         let results = validate(policy, policySchema1);
         if (results) {
             valid++;
         }
         count++;
-    })
+    });
     if (valid == policies.length) {
-        console.log("Successfully validated all policies!")
+        console.log(chalk.green("Successfully validated all policies!"));
     }
 }
 
 export const validatePolicy2 = (arg: any) => {
-    validate(arg, policySchema2)
+    validate(arg, policySchema2);
 }
 
 const validate = (arg: any, schema: any): boolean => {
-    console.log("Validating...")
+    console.log("Validating...");
     const { error, value } = schema.validate(arg);
     if (error) {
-        console.log("Failure!")
-        console.log(error.details)
+        console.log(chalk.red("Failure!"));
+        console.log(error.details);
         return false;
     } else {
-        console.log("OK!")
-        console.log("Valid: ", value)
+        console.log("OK!");
         return true;
     }
 };

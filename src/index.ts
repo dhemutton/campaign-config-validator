@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import yargs from "yargs";
-import { validateFeature, validatePolicy1 } from './implementations/validate'
+import figlet from "figlet";
+import chalk from 'chalk';
+import { validateFeature, validatePolicy1 } from './implementations/validate';
 
 yargs
   .usage('$0 <cmd> [args]')
@@ -14,11 +16,12 @@ yargs
         conflicts: "policy",
       })
   }, function (argv) {
+    console.log(chalk.cyan(figlet.textSync("SupplyAlly Config Validator")));
     if (argv.policy) {
-      console.log("Validate policy")
+      console.log(chalk.bgMagenta("Validate policy"));
       validatePolicy1(argv.policy);
     } else if (argv.feature) {
-      console.log("Validate feature")
+      console.log(chalk.bgMagenta("Validate feature"));
       validateFeature(argv.feature);
     }
   })

@@ -1,9 +1,9 @@
 import Joi from 'joi';
 
-const textTypeInput = ["STRING", "PHONE_NUMBER"]
-const scanButtonTypeInput = ["QR", "CODE_39"]
-const periodTypeInput = ["CRON", "ROLLING"]
-const policyTypeInput = ["PURCHASE", "REDEEM"]
+const textTypeInput = ["STRING", "PHONE_NUMBER"];
+const scanButtonTypeInput = ["QR", "CODE_39"];
+const periodTypeInput = ["CRON", "ROLLING"];
+const policyTypeInput = ["PURCHASE", "REDEEM"];
 
 export const policySchema = Joi.object({
     name: Joi.string()
