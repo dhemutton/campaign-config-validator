@@ -30,7 +30,7 @@ export const validatePolicy2 = (arg: any) => {
     validate(arg, policySchema2);
 }
 
-const validate = (arg: any, schema: any): boolean => {
+export const validate = (arg: any, schema: any): boolean => {
     console.log("Validating...");
     const { error, value } = schema.validate(arg);
     if (error) {

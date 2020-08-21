@@ -19,6 +19,7 @@ export const featureSchema = Joi.object({
         .required(),
     flowType: Joi.string()
         .valid(...flowTypeInput)
+        .default("DEFAULT")
         .required(),
     id: Joi.object({
         type: Joi.string()
@@ -26,13 +27,14 @@ export const featureSchema = Joi.object({
             .required(),
         scannerType: Joi.string()
             .valid(...scannerTypeInput)
+            .default("CODE_39")
             .required(),
         validation: Joi.string()
             .valid(...validationTypeInput)
             .required(),
         validationRegex: Joi.string()
             .required(),
-    }),
+    }).required(),
     transactionGrouping: Joi.boolean()
-        .required() 
+        .required()
 })
