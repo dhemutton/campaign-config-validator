@@ -13,13 +13,14 @@ export const policySchema = Joi.object({
     categoryType: Joi.string(),
     order: Joi.number()
         .integer()
-        .default(0)
-        .min(0)
+        .default(1)
+        .min(1)
         .max(9999)
         .required(),
     alert: Joi.object({
         threshold: Joi.number()
             .integer()
+            .min(1)
             .max(9999)
             .required(),
         label: Joi.string()

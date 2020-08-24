@@ -6,7 +6,7 @@
     "id": {
         "type": "STRING",
         "scannerType": "CODE_39",
-        "validation": "NRIC",
+        "validation": "REGEX",
         "validationRegex": "^[a-zA-Z0-9-_ ]+$"
     },
     "transactionGrouping": true

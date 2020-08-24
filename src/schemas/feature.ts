@@ -33,7 +33,7 @@ export const featureSchema = Joi.object({
             .valid(...validationTypeInput)
             .required(),
         validationRegex: Joi.string()
-            .required(),
+        .when('validation', { is: 'REGEX', then: Joi.string().required() }),
     }).required(),
     transactionGrouping: Joi.boolean()
         .required()
