@@ -40,7 +40,7 @@ export const policySchema = Joi.object({
                     .required(),
                 disabled: Joi.boolean()
                     .required(),
-            }),
+            }).required(),
             scanButton: Joi.object({
                 type: Joi.string()
                     .valid(...scanButtonTypeInput),
@@ -48,9 +48,9 @@ export const policySchema = Joi.object({
                     .required(),
                 disabled: Joi.boolean()
                     .required(),
-            }),
+            }).required(),
         })
-    ),
+    ).required(),
     quantity: Joi.object({
         period: Joi.number()
             .integer()
@@ -58,7 +58,7 @@ export const policySchema = Joi.object({
         periodType: Joi.string()
             .valid(...periodTypeInput)
             .required(),
-        periodExpression: [Joi.string().required(), Joi.number().required()],
+        periodExpression: Joi.alternatives(Joi.string(), Joi.number()).required(),
         limit: Joi.number()
             .integer()
             .min(1)
@@ -73,7 +73,7 @@ export const policySchema = Joi.object({
             .integer()
             .min(1)
             .max(9999),
-    }),
+    }).required(),
     type: Joi.string()
         .valid(...policyTypeInput)
         .required(),
