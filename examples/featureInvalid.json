@@ -1,0 +1,12 @@
+{
+    "minAppBuildVersion": 0,
+    "minAppBinaryVersion": "3.0.0",
+    "flowType": "DEFAULT",
+    "id": {
+        "type": "STRING",
+        "scannerType": "CODE_39",
+        "validation": "REGEX",
+        "validationRegex": "^[a-zA-Z0-9-_ ]+$"
+    },
+    "transactionGrouping": true
+}
