@@ -42,6 +42,7 @@ describe("validatePolicy", () => {
       "periodExpression": "*/5 * * * *",
       "limit": 1,
       "default": 1,
+      "step": 1,
       "checkoutLimit": 1
     },
     "type": "REDEEM"
@@ -74,6 +75,29 @@ describe("validatePolicy", () => {
       const policy = { ...cloneDeep(policyInput) };
       const results = policySchema.validate(policy);
       expect(results).toHaveProperty("value", policy);
+    });
+  });
+
+  describe("image", () => {
+    it("should be valid without image", async () => {
+      const policy = { ...cloneDeep(policyInput) };
+      const results = policySchema.validate(policy);
+      expect(results).toHaveProperty("value", policy);
+    });
+  });
+
+  describe("unit", () => {
+    it("should be valid without unit", async () => {
+      const policy = { ...cloneDeep(policyInput) };
+      const results = policySchema.validate(policy);
+      expect(results).toHaveProperty("value", policy);
+    });
+
+    it("should be invalid if type is not PREFIX/POSTFIX", async () => {
+      const policy = { ...cloneDeep(policyInput), unit: "test" };
+      const results = policySchema.validate(policy);
+      expect(results).toHaveProperty("error.details",
+        [{ "context": { "key": "unit", "label": "unit", "valids": ["PREFIX", "POSTFIX"], "value": "test" }, "message": "\"unit\" must be one of [PREFIX, POSTFIX]", "path": ["unit"], "type": "any.only" }])
     });
   });
 
@@ -136,11 +160,10 @@ describe("validatePolicy", () => {
   });
 
   describe("identifiers", () => {
-    it("should be invalid without identifiers", async () => {
+    it("should be valid without identifiers", async () => {
       const policy = { ...omit(cloneDeep(policyInput), "identifiers") };
       const results = policySchema.validate(policy);
-      expect(results).toHaveProperty("error.details",
-        [{ "context": { "key": "identifiers", "label": "identifiers" }, "message": "\"identifiers\" is required", "path": ["identifiers"], "type": "any.required" }])
+      expect(results).toHaveProperty("value", policy);
     });
 
     describe("label", () => {
@@ -213,11 +236,10 @@ describe("validatePolicy", () => {
     });
 
     describe("scanButton", () => {
-      it("should be invalid without scanButton", async () => {
+      it("should be valid without scanButton", async () => {
         const policy = { ...omit(cloneDeep(policyInput), "identifiers[0].scanButton") };
         const results = policySchema.validate(policy);
-        expect(results).toHaveProperty("error.details",
-          [{ "context": { "key": "scanButton", "label": "identifiers[0].scanButton" }, "message": "\"identifiers[0].scanButton\" is required", "path": ["identifiers", 0, "scanButton"], "type": "any.required" }])
+        expect(results).toHaveProperty("value", policy);
       });
 
       describe("type", () => {
@@ -309,11 +331,10 @@ describe("validatePolicy", () => {
     });
 
     describe("default", () => {
-      it("should be invalid without default", async () => {
+      it("should be valid without default", async () => {
         const policy = { ...omit(cloneDeep(policyInput), "quantity.default") };
         const results = policySchema.validate(policy);
-        expect(results).toHaveProperty("error.details",
-          [{ "context": { "key": "default", "label": "quantity.default" }, "message": "\"quantity.default\" is required", "path": ["quantity", "default"], "type": "any.required" }])
+        expect(results).toHaveProperty("value", policy);
       });
 
       it("should be invalid if 0", async () => {
@@ -329,7 +350,31 @@ describe("validatePolicy", () => {
         policy.quantity.default = -1;
         const results = policySchema.validate(policy);
         expect(results).toHaveProperty("error.details",
-        [{ "context": { "key": "default", "label": "quantity.default", "limit": 1, "value": -1 }, "message": "\"quantity.default\" must be greater than or equal to 1", "path": ["quantity", "default"], "type": "number.min" }])
+          [{ "context": { "key": "default", "label": "quantity.default", "limit": 1, "value": -1 }, "message": "\"quantity.default\" must be greater than or equal to 1", "path": ["quantity", "default"], "type": "number.min" }])
+      });
+    });
+
+    describe("step", () => {
+      it("should be valid without step", async () => {
+        const policy = { ...omit(cloneDeep(policyInput), "quantity.step") };
+        const results = policySchema.validate(policy);
+        expect(results).toHaveProperty("value", policy);
+      });
+
+      it("should be invalid if 0", async () => {
+        let policy = { ...cloneDeep(policyInput) };
+        policy.quantity.step = 0;
+        const results = policySchema.validate(policy);
+        expect(results).toHaveProperty("error.details",
+          [{ "context": { "key": "step", "label": "quantity.step", "limit": 1, "value": 0 }, "message": "\"quantity.step\" must be greater than or equal to 1", "path": ["quantity", "step"], "type": "number.min" }])
+      });
+
+      it("should be invalid if negative", async () => {
+        const policy = { ...cloneDeep(policyInput) };
+        policy.quantity.step = -1;
+        const results = policySchema.validate(policy);
+        expect(results).toHaveProperty("error.details",
+          [{ "context": { "key": "step", "label": "quantity.step", "limit": 1, "value": -1 }, "message": "\"quantity.step\" must be greater than or equal to 1", "path": ["quantity", "step"], "type": "number.min" }])
       });
     });
 
@@ -353,7 +398,7 @@ describe("validatePolicy", () => {
         policy.quantity.checkoutLimit = -1;
         const results = policySchema.validate(policy);
         expect(results).toHaveProperty("error.details",
-        [{ "context": { "key": "checkoutLimit", "label": "quantity.checkoutLimit", "limit": 1, "value": -1 }, "message": "\"quantity.checkoutLimit\" must be greater than or equal to 1", "path": ["quantity", "checkoutLimit"], "type": "number.min" }])
+          [{ "context": { "key": "checkoutLimit", "label": "quantity.checkoutLimit", "limit": 1, "value": -1 }, "message": "\"quantity.checkoutLimit\" must be greater than or equal to 1", "path": ["quantity", "checkoutLimit"], "type": "number.min" }])
       });
     });
   });

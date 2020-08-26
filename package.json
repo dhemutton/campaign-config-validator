@@ -17,10 +17,13 @@
   "dependencies": {
     "@types/jest": "^26.0.10",
     "@types/lodash": "^4.14.159",
+    "@types/yargs-interactive": "^2.1.1",
+    "aws-sdk": "^2.739.0",
     "chalk": "^4.1.0",
     "figlet": "^1.5.0",
     "joi": "^17.2.0",
-    "yargs": "^15.4.1"
+    "yargs": "^15.4.1",
+    "yargs-interactive": "^3.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.10.3",

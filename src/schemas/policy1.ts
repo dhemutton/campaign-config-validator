@@ -4,6 +4,7 @@ const textTypeInput = ["STRING", "PHONE_NUMBER"];
 const scanButtonTypeInput = ["QR", "CODE_39"];
 const periodTypeInput = ["CRON", "ROLLING"];
 const policyTypeInput = ["PURCHASE", "REDEEM"];
+const unitTypeInput = ["PREFIX", "POSTFIX"];
 
 export const policySchema = Joi.object({
     name: Joi.string()
@@ -11,6 +12,9 @@ export const policySchema = Joi.object({
     category: Joi.string()
         .required(),
     categoryType: Joi.string(),
+    image: Joi.string(),
+    unit: Joi.string()
+        .valid(...unitTypeInput),
     order: Joi.number()
         .integer()
         .default(1)
@@ -48,9 +52,9 @@ export const policySchema = Joi.object({
                     .required(),
                 disabled: Joi.boolean()
                     .required(),
-            }).required(),
+            }),
         })
-    ).required(),
+    ),
     quantity: Joi.object({
         period: Joi.number()
             .integer()
@@ -67,8 +71,11 @@ export const policySchema = Joi.object({
         default: Joi.number()
             .integer()
             .min(1)
-            .max(9999)
-            .required(),
+            .max(9999),
+        step: Joi.number()
+            .integer()
+            .min(1)
+            .max(9999),
         checkoutLimit: Joi.number()
             .integer()
             .min(1)
